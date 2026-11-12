@@ -1,0 +1,277 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+command_timeout = 1000
+
+# ألوان المقاطع:
+#   يوزر #3466c2 | مسار #2b4170 | git #52407f | وقت #24493f
+
+format = """
+[\ue0b6](fg:#3466c2)\
+$username\
+[\ue0b0](fg:#3466c2 bg:#2b4170)\
+$directory\
+$git_branch\
+$git_status\
+${custom.git_end}\
+${custom.nogit_end}\
+$time\
+[\ue0b4](fg:#24493f) \
+$python\
+$nodejs\
+$rust\
+$golang\
+$java\
+$kotlin\
+$php\
+$c\
+$cpp\
+$dotnet\
+$ruby\
+$swift\
+$dart\
+$lua\
+$perl\
+$scala\
+$elixir\
+$haskell\
+$zig\
+$julia\
+$crystal\
+$elm\
+$erlang\
+$terraform\
+$nix_shell\
+$docker_context\
+$kubernetes\
+$aws\
+$package\
+$cmd_duration\
+$jobs
+$character"""
+
+[username]
+show_always = true
+style_user = "bold fg:#ffffff bg:#3466c2"
+style_root = "bold fg:#ffffff bg:#e01b24"
+format = "[ \uf30a $user ]($style)"
+
+[directory]
+style = "fg:#e8e8e8 bg:#2b4170"
+read_only = " \uf023"
+read_only_style = "fg:#ff6b6b bg:#2b4170"
+home_symbol = "\uf015 ~"
+truncation_length = 3
+truncation_symbol = "…/"
+format = "[ $path]($style)[$read_only]($read_only_style)[ ]($style)"
+
+# ---------- git (مبسط) ----------
+# السهم قبل الفرع جوه الـ format عشان يظهر بس جوه مشروع git
+[git_branch]
+symbol = "\ue0a0 "
+style = "fg:#d2a8ff bg:#52407f"
+format = "[\ue0b0](fg:#2b4170 bg:#52407f)[ $symbol$branch ]($style)"
+
+[git_status]
+style = "fg:#d2a8ff bg:#52407f"
+format = "([$all_status$ahead_behind ]($style))"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[git_state]
+disabled = true
+
+[git_metrics]
+disabled = true
+
+# سهم النهاية: لو جوه git يبقى من الأخضر للوردي، ولو لأ يبقى من البرتقالي للوردي
+[custom.git_end]
+when = "git rev-parse --is-inside-work-tree"
+command = "echo 1"
+format = "[\ue0b0](fg:#52407f bg:#24493f)"
+shell = ["sh"]
+
+[custom.nogit_end]
+when = "! git rev-parse --is-inside-work-tree"
+command = "echo 1"
+format = "[\ue0b0](fg:#2b4170 bg:#24493f)"
+shell = ["sh"]
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:#7ee787 bg:#24493f"
+format = "[ \uf017 $time ]($style)"
+
+# ---------- اللغات (بتظهر بعد المقاطع، بس لما تكون جوه مشروع بيستخدمها) ----------
+[python]
+symbol = "\ue73c "
+style = "fg:#ffd43b"
+format = '[$symbol($version )(\($virtualenv\) )]($style)'
+
+[nodejs]
+symbol = "\ue718 "
+style = "fg:#83cd29"
+format = "[$symbol($version )]($style)"
+
+[rust]
+symbol = "\ue7a8 "
+style = "fg:#ff7b63"
+format = "[$symbol($version )]($style)"
+
+[golang]
+symbol = "\ue626 "
+style = "fg:#00add8"
+format = "[$symbol($version )]($style)"
+
+[java]
+symbol = "\ue256 "
+style = "fg:#f89820"
+format = "[$symbol($version )]($style)"
+
+[kotlin]
+symbol = "\ue634 "
+style = "fg:#a97bff"
+format = "[$symbol($version )]($style)"
+
+[php]
+symbol = "\ue608 "
+style = "fg:#8892bf"
+format = "[$symbol($version )]($style)"
+
+[c]
+symbol = "\ue61e "
+style = "fg:#5c8dbc"
+format = "[$symbol($version(-$name) )]($style)"
+
+[cpp]
+disabled = false
+symbol = "\ue61d "
+style = "fg:#659ad2"
+format = "[$symbol($version(-$name) )]($style)"
+
+[dotnet]
+symbol = "\ue77f "
+style = "fg:#9b6bff"
+format = "[$symbol($version )]($style)"
+
+[ruby]
+symbol = "\ue791 "
+style = "fg:#e0463a"
+format = "[$symbol($version )]($style)"
+
+[swift]
+symbol = "\ue755 "
+style = "fg:#fa7343"
+format = "[$symbol($version )]($style)"
+
+[dart]
+symbol = "\ue798 "
+style = "fg:#00b4ab"
+format = "[$symbol($version )]($style)"
+
+[lua]
+symbol = "\ue620 "
+style = "fg:#51a0cf"
+format = "[$symbol($version )]($style)"
+
+[perl]
+symbol = "\ue769 "
+style = "fg:#6c7bd1"
+format = "[$symbol($version )]($style)"
+
+[scala]
+symbol = "\ue737 "
+style = "fg:#dc322f"
+format = "[$symbol($version )]($style)"
+
+[elixir]
+symbol = "\ue62d "
+style = "fg:#a074c4"
+format = "[$symbol($version )]($style)"
+
+[haskell]
+symbol = "\ue777 "
+style = "fg:#8f7bd1"
+format = "[$symbol($version )]($style)"
+
+[zig]
+symbol = "\ue6a9 "
+style = "fg:#f7a41d"
+format = "[$symbol($version )]($style)"
+
+[julia]
+symbol = "\ue624 "
+style = "fg:#9558b2"
+format = "[$symbol($version )]($style)"
+
+[crystal]
+symbol = "\ue62f "
+style = "fg:#e6e6e6"
+format = "[$symbol($version )]($style)"
+
+[elm]
+symbol = "\ue62c "
+style = "fg:#60b5cc"
+format = "[$symbol($version )]($style)"
+
+[erlang]
+symbol = "\ue7b1 "
+style = "fg:#e0577a"
+format = "[$symbol($version )]($style)"
+
+[terraform]
+symbol = "\uf1bb "
+style = "fg:#a78bfa"
+format = "[$symbol$workspace ]($style)"
+
+# ---------- أدوات ----------
+[nix_shell]
+symbol = "\uf313 "
+style = "fg:#7ebae4"
+format = "[$symbol$state ]($style)"
+
+[docker_context]
+symbol = "\uf308 "
+style = "fg:#4fa6ff"
+format = "[$symbol$context ]($style)"
+
+[kubernetes]
+disabled = false
+symbol = "☸ "
+style = "fg:#326ce5"
+format = '[$symbol$context( \($namespace\)) ]($style)'
+
+[aws]
+symbol = "\ue7ad "
+style = "fg:#ff9900"
+format = '[$symbol($profile )(\($region\) )]($style)'
+
+[package]
+symbol = "\uf487 "
+style = "fg:#f5a25d"
+format = "[$symbol$version ]($style)"
+
+[cmd_duration]
+min_time = 2000
+style = "fg:#f5c211"
+format = "[\uf252 $duration ]($style)"
+
+[jobs]
+symbol = "\uf013 "
+style = "fg:#4fa6ff"
+number_threshold = 1
+format = "[$symbol$number ]($style)"
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+vimcmd_symbol = "[➜](bold yellow)"
