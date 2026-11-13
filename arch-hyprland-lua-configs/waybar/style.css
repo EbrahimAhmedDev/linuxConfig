@@ -1,0 +1,124 @@
+@define-color dark-9 rgba(17, 17, 27, 1.0);
+@define-color dark-8 rgba(30, 30, 46, 1.0);
+@define-color dark-7 rgba(49, 50, 68, 1.0);
+@define-color highlight #89b4fa;
+@define-color urgent #f38ba8;
+
+* {
+    font-family: "JetBrainsMono Nerd Font Propo", "Noto Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+window#waybar {
+    background-color: @dark-9;
+    color: #cdd6f4;
+}
+
+#workspaces button {
+    padding: 3px 8px;
+    margin: 5px 2px 5px 4px;
+    background-color: transparent;
+    border-radius: 4px;
+    color: #cdd6f4;
+}
+
+#workspaces button.active {
+    background-color: @highlight;
+    color: #11111b;
+    font-weight: 700;
+}
+
+#workspaces button.urgent {
+    background-color: @urgent;
+    color: #11111b;
+}
+
+#clock {
+    padding: 5px 12px;
+    margin: 5px 0px;
+    border-radius: 8px;
+    background-color: @dark-8;
+    color: #cdd6f4;
+}
+
+#battery,
+#bluetooth,
+#network,
+#cpu,
+#memory,
+#volume {
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin: 5px 6px 5px 0px;
+    background-color: @dark-8;
+    color: #cdd6f4;
+}
+
+#battery.charging {
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #f9e2af;
+    color: #11111b;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @urgent;
+    color: #11111b;
+}
+
+#pulseaudio-slider {
+    padding: 0;
+    margin: 0 0 0 8px;
+}
+
+#pulseaudio-slider slider {
+    min-height: 0px;
+    min-width: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+    min-height: 6px;
+    min-width: 70px;
+    border-radius: 5px;
+    background-color: @dark-7;
+}
+
+#pulseaudio-slider highlight {
+    min-width: 10px;
+    border-radius: 5px;
+    background-color: @highlight;
+}
+
+#media {
+    color: #cdd6f4;
+    margin-left: 24px;
+}
+
+#custom-media-animation {
+    font-size: 16px;
+    margin-right: 8px;
+    color: @highlight;
+}
+
+#custom-media-now-playing {
+    margin-right: 8px;
+}
+
+#custom-media-time {
+    color: #a6adc8;
+    font-size: 13px;
+}
+
+tooltip {
+    background-color: @dark-9;
+    border-radius: 6px;
+    border: 1px solid @dark-7;
+    color: #ffffff;
+}
